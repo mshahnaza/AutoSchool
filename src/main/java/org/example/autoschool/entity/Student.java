@@ -26,4 +26,7 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     private List<Exam> examList;
+
+    @OneToMany(mappedBy = "driver")
+    private List<DriverLicence> driverLicences;
 }
