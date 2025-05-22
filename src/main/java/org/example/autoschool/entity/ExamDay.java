@@ -37,6 +37,10 @@ public class ExamDay {
     @JoinColumn(name = "instructor_id", referencedColumnName = "id")
     private Instructor instructor;
 
+    @ManyToOne
+    @JoinColumn(name = "branch_id", referencedColumnName = "id")
+    private Branch branch;
+
     @OneToMany(mappedBy = "examDay")
     private List<AvailableSlot> availableSlots;
 }

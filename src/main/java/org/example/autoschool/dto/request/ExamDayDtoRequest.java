@@ -16,4 +16,5 @@ public class ExamDayDtoRequest {
     private String examType;
     private String category;
     private Long instructorId;
+    private Long brunchId;
 }

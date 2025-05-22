@@ -26,8 +26,8 @@ public class UserMapper {
                 .build();
     }
 
-    public List<UserDto> toDtoList(List<User> tasks) {
-        return tasks.stream().map(this::toDto).collect(Collectors.toList());
+    public List<UserDto> toDtoList(List<User> users) {
+        return users.stream().map(this::toDto).collect(Collectors.toList());
     }
 
     public User toEntity(UserDtoRequest userDtoRequest) {

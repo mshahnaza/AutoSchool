@@ -1,6 +1,7 @@
 package org.example.autoschool.utils.mapper;
 
 import lombok.RequiredArgsConstructor;
+import org.example.autoschool.dto.request.BranchDtoRequest;
 import org.example.autoschool.dto.request.ExamDayDtoRequest;
 import org.example.autoschool.dto.response.ExamDayDto;
 import org.example.autoschool.entity.ExamDay;
@@ -17,6 +18,8 @@ import java.util.stream.Collectors;
 public class ExamDayMapper {
     private final InstructorService instructorService;
     private final InstructorMapper instructorMapper;
+    private final BranchMapper branchMapper;
+    private final BranchService branchService;
 
     public ExamDayDto toDto(ExamDay examDay) {
         return new ExamDayDto().toBuilder()
@@ -27,6 +30,7 @@ public class ExamDayMapper {
                 .examType(examDay.getExamType())
                 .category(examDay.getCategory())
                 .instructor(instructorMapper.toDto(examDay.getInstructor()))
+                .branch(branchMapper.toDto(examDay.getBranch()))
                 .build();
     }
 
@@ -42,6 +46,7 @@ public class ExamDayMapper {
                 .examType(ExamType.valueOf(examDayDtoRequest.getExamType()))
                 .category(Category.valueOf(examDayDtoRequest.getCategory()))
                 .instructor(instructorService.getEntityById(examDayDtoRequest.getInstructorId()))
+                .branch(branchService.getEntityById(examDayDtoRequest.getBrunchId()))
                 .build();
     }
 }
