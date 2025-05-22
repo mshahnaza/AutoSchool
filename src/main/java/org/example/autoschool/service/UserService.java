@@ -1,0 +1,15 @@
+package org.example.autoschool.service;
+
+import org.example.autoschool.dto.request.UserDtoRequest;
+import org.example.autoschool.dto.response.UserDto;
+import org.example.autoschool.entity.User;
+
+public interface UserService {
+    User getEntityById(Long id);
+    UserDto getDtoById(Long id);
+    UserDto getDtoByEmail(String email);
+
+    UserDto save(User user);
+    UserDto save(UserDtoRequest request);
+    UserDto update(UserDtoRequest request);
+}
