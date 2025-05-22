@@ -20,6 +20,8 @@ public class AvailableSlot {
     @Column(nullable = false)
     private LocalTime time;
 
+    private Integer maxStudentNumber;
+
     @Column(nullable = false, columnDefinition = "boolean default false")
     private Boolean isBooked;
 

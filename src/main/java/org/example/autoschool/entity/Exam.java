@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.example.autoschool.enums.ExamResult;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "exam")
@@ -23,9 +23,9 @@ public class Exam {
 
     private String remarks;
 
-    private LocalDateTime expirationAt;
+    private LocalDate expirationAt;
 
-    private LocalDateTime takenAt;
+    private LocalDate takenAt;
 
     @ManyToOne
     @JoinColumn(name = "student_id", referencedColumnName = "id")
