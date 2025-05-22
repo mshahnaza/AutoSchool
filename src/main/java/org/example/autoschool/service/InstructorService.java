@@ -9,6 +9,7 @@ public interface InstructorService {
     InstructorDto getDtoById(Long id);
     InstructorDto getDtoByEmail(String email);
     Instructor getDtoByUserID(Long id);
+    InstructorDto getDtoByExamId(Long id);
 
     InstructorDto save(InstructorDtoRequest request);
     InstructorDto update(InstructorDtoRequest request);
