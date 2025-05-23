@@ -4,12 +4,16 @@ import org.example.autoschool.dto.request.InstructorDtoRequest;
 import org.example.autoschool.dto.response.InstructorDto;
 import org.example.autoschool.entity.Instructor;
 
+import java.util.List;
+
 public interface InstructorService {
     Instructor getEntityById(Long id);
     InstructorDto getDtoById(Long id);
     InstructorDto getDtoByEmail(String email);
     Instructor getDtoByUserID(Long id);
     InstructorDto getDtoByExamId(Long id);
+
+    List<InstructorDto> getAllDtos();
 
     InstructorDto save(InstructorDtoRequest request);
     InstructorDto update(InstructorDtoRequest request);

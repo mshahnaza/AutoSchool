@@ -25,5 +25,5 @@ public class Instructor {
     private User instructorUser;
 
     @OneToMany(mappedBy = "instructor")
-    private List<ExamDay> examDays;
+    private List<AvailableSlot> slots;
 }

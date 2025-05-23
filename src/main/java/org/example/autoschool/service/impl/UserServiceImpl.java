@@ -11,6 +11,8 @@ import org.example.autoschool.utils.exception.ObjectNotFoundException;
 import org.example.autoschool.utils.mapper.UserMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -24,7 +26,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getEntityById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User with id: " + id + " not found"));
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ObjectNotFoundException("User with id: " + id + " not found"));
     }
 
     @Override
@@ -34,7 +37,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getDtoByEmail(String email) {
-        return userMapper.toDto(userRepository.findByEmail(email));
+        return userMapper.toDto(
+                userRepository.findByEmail(email)
+                        .orElseThrow(() -> new ObjectNotFoundException("User with email: " + email + " not found")));
+    }
+
+    @Override
+    public List<UserDto> getAllDtos() {
+        return userMapper.toDtoList(userRepository.findAll());
     }
 
     @Override

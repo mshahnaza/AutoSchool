@@ -11,6 +11,8 @@ import org.example.autoschool.utils.exception.ObjectNotFoundException;
 import org.example.autoschool.utils.mapper.StudentMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
@@ -40,6 +42,11 @@ public class StudentServiceImpl implements StudentService {
     public Student getDtoByUserID(Long id) {
         return studentRepository.findByUserId(id)
                 .orElseThrow(() -> new ObjectNotFoundException("Student with user id: " + id + " not found"));
+    }
+
+    @Override
+    public List<StudentDto> getAllDtos() {
+        return studentMapper.toDtoList(studentRepository.findAll());
     }
 
     @Override

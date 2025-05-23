@@ -12,6 +12,8 @@ import org.example.autoschool.utils.exception.ObjectNotFoundException;
 import org.example.autoschool.utils.mapper.InstructorMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class InstructorServiceImpl implements InstructorService {
@@ -47,6 +49,11 @@ public class InstructorServiceImpl implements InstructorService {
     public InstructorDto getDtoByExamId(Long id) {
         return instructorMapper.toDto(
                 instructorRepository.findInstructorByExamId(id));
+    }
+
+    @Override
+    public List<InstructorDto> getAllDtos() {
+        return instructorMapper.toDtoList(instructorRepository.findAll());
     }
 
     @Override
