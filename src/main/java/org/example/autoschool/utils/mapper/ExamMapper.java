@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class ExamMapper {
-    private final AvailableSlotService availableSlotService;
+    private final AvailableSlotService slotService;
     private final StudentService studentService;
-    private final AvailableSlotMapper availableSlotMapper;
+    private final AvailableSlotMapper slotMapper;
     private final StudentMapper studentMapper;
 
     public ExamDto toDto(Exam exam) {
@@ -33,7 +33,7 @@ public class ExamMapper {
                 .result(exam.getResult())
                 .remarks(exam.getRemarks())
                 .student(studentMapper.toDto(exam.getStudent()))
-                .slot(availableSlotMapper.toDto(exam.getAvailableSlot()))
+                .slot(slotMapper.toDto(exam.getAvailableSlot()))
                 .build();
     }
 
@@ -49,7 +49,7 @@ public class ExamMapper {
                 .result(ExamResult.valueOf(examDtoRequest.getResult()))
                 .remarks(examDtoRequest.getRemarks())
                 .student(studentService.getEntityById(examDtoRequest.getStudentId()))
-                .slot(studentService.getEntityById(examDtoRequest.getSlotId()))
+                .availableSlot(slotService.getEntityById(examDtoRequest.getSlotId()))
                 .build();
     }
 }
