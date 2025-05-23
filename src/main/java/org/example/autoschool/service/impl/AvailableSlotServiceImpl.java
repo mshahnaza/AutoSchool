@@ -159,7 +159,7 @@ public class AvailableSlotServiceImpl implements AvailableSlotService {
                 slot.getExamDay().getId(), slot.getInstructor().getId(),
                 String.valueOf(slot.getTime())).size() > slot.getMaxStudentNumber())
             throw new OverloadExeption("This slot already have max student number");
-        return null;
+        return slotMapper.toDto(slot);
     }
 
     @Override
