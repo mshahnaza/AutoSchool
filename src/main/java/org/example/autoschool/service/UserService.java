@@ -9,6 +9,7 @@ import java.util.List;
 public interface UserService {
     User getEntityById(Long id);
     UserDto getDtoById(Long id);
+    User getEntityByEmail(String email);
     UserDto getDtoByEmail(String email);
 
     List<UserDto> getAllDtos();

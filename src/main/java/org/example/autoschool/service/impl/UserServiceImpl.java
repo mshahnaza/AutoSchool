@@ -36,10 +36,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getEntityByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new ObjectNotFoundException("User with email: " + email + " not found"));
+    }
+
+    @Override
     public UserDto getDtoByEmail(String email) {
-        return userMapper.toDto(
-                userRepository.findByEmail(email)
-                        .orElseThrow(() -> new ObjectNotFoundException("User with email: " + email + " not found")));
+        return userMapper.toDto(getEntityByEmail(email));
     }
 
     @Override
