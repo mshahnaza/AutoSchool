@@ -57,6 +57,11 @@ public class InstructorServiceImpl implements InstructorService {
     }
 
     @Override
+    public Instructor save(Instructor request) {
+        return instructorRepository.save(request);
+    }
+
+    @Override
     public InstructorDto save(InstructorDtoRequest request) {
         Instructor instructor = instructorMapper.toEntity(request);
         userService.save(instructor.getInstructorUser());

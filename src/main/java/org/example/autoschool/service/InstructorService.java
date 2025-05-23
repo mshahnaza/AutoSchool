@@ -15,6 +15,7 @@ public interface InstructorService {
 
     List<InstructorDto> getAllDtos();
 
+    Instructor save(Instructor request);
     InstructorDto save(InstructorDtoRequest request);
     InstructorDto update(InstructorDtoRequest request);
 }
