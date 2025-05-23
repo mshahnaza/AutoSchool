@@ -12,7 +12,6 @@ import java.util.List;
 
 @Repository
 public interface ExamDayRepository extends JpaRepository<ExamDay, Long> {
-    List<ExamDay> findByInstructorId(Long id);
     List<ExamDay> findByDate(LocalDate date);
     List<ExamDay> findByCategory(Category category);
     List<ExamDay> findByExamType(ExamType examType);
