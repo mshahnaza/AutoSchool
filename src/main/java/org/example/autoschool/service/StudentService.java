@@ -14,6 +14,7 @@ public interface StudentService {
 
     List<StudentDto> getAllDtos();
 
+    Student save(Student request);
     StudentDto save(StudentDtoRequest request);
     StudentDto update(StudentDtoRequest request);
 }

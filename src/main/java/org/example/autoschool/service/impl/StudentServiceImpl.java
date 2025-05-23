@@ -50,6 +50,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student save(Student request) {
+        return studentRepository.save(request);
+    }
+
+    @Override
     public StudentDto save(StudentDtoRequest request) {
         Student student = studentMapper.toEntity(request);
         userService.save(student.getStudentUser());
