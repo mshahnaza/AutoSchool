@@ -18,6 +18,5 @@ public class ExamDayDto {
     private Integer currentStudents;
     private ExamType examType;
     private Category category;
-    private InstructorDto instructor;
     private BranchDto branch;
 }

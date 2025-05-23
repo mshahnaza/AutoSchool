@@ -10,6 +10,8 @@ import org.example.autoschool.utils.exception.ObjectNotFoundException;
 import org.example.autoschool.utils.mapper.BranchMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BranchServiceImpl implements BranchService {
@@ -25,6 +27,11 @@ public class BranchServiceImpl implements BranchService {
     @Override
     public BranchDto getDtoById(Long id) {
         return branchMapper.toDto(getEntityById(id));
+    }
+
+    @Override
+    public List<BranchDto> getAllDtos() {
+        return branchMapper.toDtoList(branchRepository.findAll());
     }
 
     @Override

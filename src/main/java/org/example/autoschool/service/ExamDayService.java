@@ -13,7 +13,8 @@ public interface ExamDayService {
     ExamDay getEntityById(Long id);
     ExamDayDto getDtoById(Long id);
 
-    List<ExamDayDto> getDtoByInstructorId(Long id);
+    List<ExamDayDto> getAllDtos();
+
     List<ExamDayDto> getDtoByDate(String date);
     List<ExamDayDto> getDtoByCategory(String category);
     List<ExamDayDto> getDtoByExamType(String examType);

@@ -15,6 +15,5 @@ public class ExamDayDtoRequest {
     private Integer maxStudents;
     private String examType;
     private String category;
-    private Long instructorId;
     private Long brunchId;
 }

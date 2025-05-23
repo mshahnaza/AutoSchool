@@ -8,6 +8,7 @@ import org.example.autoschool.enums.Category;
 import org.example.autoschool.enums.ExamType;
 import org.example.autoschool.repository.ExamDayRepository;
 import org.example.autoschool.service.ExamDayService;
+import org.example.autoschool.utils.exception.AlreadyExistException;
 import org.example.autoschool.utils.exception.ObjectNotFoundException;
 import org.example.autoschool.utils.mapper.ExamDayMapper;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,8 @@ public class ExamDayServiceImpl implements ExamDayService {
     }
 
     @Override
-    public List<ExamDayDto> getDtoByInstructorId(Long id) {
-        return examDayMapper.toDtoList(examDayRepository.findByInstructorId(id));
+    public List<ExamDayDto> getAllDtos() {
+        return examDayMapper.toDtoList(examDayRepository.findAll());
     }
 
     @Override
@@ -92,6 +93,13 @@ public class ExamDayServiceImpl implements ExamDayService {
     @Override
     public ExamDayDto save(ExamDayDtoRequest request) {
         ExamDay examDay = examDayMapper.toEntity(request);
+
+        if (examDayRepository.existsByDateAndExamTypeAndCategoryAndBranch(
+                examDay.getDate(), examDay.getExamType(),
+                examDay.getCategory(), examDay.getBranch()))
+            throw new AlreadyExistException("Exam day", "date, exam type, category", examDay.getDate() + " "
+                    + examDay.getExamType() + " " + examDay.getCategory());
+
         return examDayMapper.toDto(examDayRepository.save(examDay));
     }
 
@@ -105,8 +113,14 @@ public class ExamDayServiceImpl implements ExamDayService {
         newExamDay.setCategory(examDay.getCategory());
         newExamDay.setExamType(examDay.getExamType());
         newExamDay.setMaxStudents(examDay.getMaxStudents());
-        newExamDay.setInstructor(examDay.getInstructor());
         newExamDay.setBranch(examDay.getBranch());
+
+        if (examDayRepository.existsByDateAndExamTypeAndCategoryAndBranch(
+                examDay.getDate(), examDay.getExamType(),
+                examDay.getCategory(), examDay.getBranch()))
+            throw new AlreadyExistException("Exam day", "date, exam type, category, branch", examDay.getDate() + " "
+                    + examDay.getExamType() + " " + examDay.getCategory() + " " + examDay.getBranch());
+
         return examDayMapper.toDto(examDayRepository.save(newExamDay));
     }
 }

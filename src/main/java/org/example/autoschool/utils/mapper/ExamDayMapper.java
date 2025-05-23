@@ -7,6 +7,7 @@ import org.example.autoschool.dto.response.ExamDayDto;
 import org.example.autoschool.entity.ExamDay;
 import org.example.autoschool.enums.Category;
 import org.example.autoschool.enums.ExamType;
+import org.example.autoschool.service.BranchService;
 import org.example.autoschool.service.InstructorService;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +17,6 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class ExamDayMapper {
-    private final InstructorService instructorService;
-    private final InstructorMapper instructorMapper;
     private final BranchMapper branchMapper;
     private final BranchService branchService;
 
@@ -29,7 +28,6 @@ public class ExamDayMapper {
                 .currentStudents(examDay.getCurrentStudents())
                 .examType(examDay.getExamType())
                 .category(examDay.getCategory())
-                .instructor(instructorMapper.toDto(examDay.getInstructor()))
                 .branch(branchMapper.toDto(examDay.getBranch()))
                 .build();
     }
@@ -45,7 +43,6 @@ public class ExamDayMapper {
                 .maxStudents(examDayDtoRequest.getMaxStudents())
                 .examType(ExamType.valueOf(examDayDtoRequest.getExamType()))
                 .category(Category.valueOf(examDayDtoRequest.getCategory()))
-                .instructor(instructorService.getEntityById(examDayDtoRequest.getInstructorId()))
                 .branch(branchService.getEntityById(examDayDtoRequest.getBrunchId()))
                 .build();
     }
