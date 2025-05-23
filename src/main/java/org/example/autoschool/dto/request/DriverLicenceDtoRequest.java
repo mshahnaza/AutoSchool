@@ -16,7 +16,7 @@ public class DriverLicenceDtoRequest {
     private String licenceNumber;
     private String category;
     private Status status;
-    private LocalDate issueDate;
-    private LocalDate expiryDate;
-    private Student studentId;
+    private String issueDate;
+    private String expiryDate;
+    private Long studentId;
 }

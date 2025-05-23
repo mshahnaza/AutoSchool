@@ -12,6 +12,7 @@ import org.example.autoschool.service.ExamDayService;
 import org.example.autoschool.service.StudentService;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,8 +44,8 @@ public class DriverLicenceMapper {
                 .licenceNumber(licenceDtoRequest.getLicenceNumber())
                 .category(Category.valueOf(licenceDtoRequest.getCategory()))
                 .status(licenceDtoRequest.getStatus())
-                .issueDate(licenceDtoRequest.getIssueDate())
-                .expiryDate(licenceDtoRequest.getExpiryDate())
+                .issueDate(LocalDate.parse(licenceDtoRequest.getIssueDate()))
+                .expiryDate(LocalDate.parse(licenceDtoRequest.getExpiryDate()))
                 .driver(studentService.getEntityById(licenceDtoRequest.getStudentId()))
                 .build();
     }
