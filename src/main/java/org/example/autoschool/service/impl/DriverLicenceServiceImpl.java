@@ -37,27 +37,27 @@ public class DriverLicenceServiceImpl implements DriverLicenceService {
 
     @Override
     public List<DriverLicenceDto> getByStudentName(String studentName) {
-        return driverLicenceMapper.toDtoList(driverLicenceRepository.getByStudentName(studentName));
+        return driverLicenceMapper.toDtoList(driverLicenceRepository.findByStudentName(studentName));
     }
 
     @Override
     public List<DriverLicenceDto> getDtoByStudentId(Long id) {
-        return driverLicenceMapper.toDtoList(driverLicenceRepository.getDtoByStudentId(id));
+        return driverLicenceMapper.toDtoList(driverLicenceRepository.findDtoByStudentId(id));
     }
 
     @Override
     public List<DriverLicenceDto> getDtoByDate(String date) {
-        return driverLicenceMapper.toDtoList(driverLicenceRepository.getDtoByDate(LocalDate.parse(date)));
+        return driverLicenceMapper.toDtoList(driverLicenceRepository.findDtoByDate(LocalDate.parse(date)));
     }
 
     @Override
     public List<DriverLicenceDto> getActiveDtoByStudentId(Long id) {
-        return driverLicenceMapper.toDtoList(driverLicenceRepository.getActiveDtoByStudentId(id));
+        return driverLicenceMapper.toDtoList(driverLicenceRepository.findActiveDtoByStudentId(id));
     }
 
     @Override
     public List<DriverLicenceDto> getActiveDtoByStudentName(String studentName) {
-        return driverLicenceMapper.toDtoList(driverLicenceRepository.getActiveDtoByStudentName(studentName));
+        return driverLicenceMapper.toDtoList(driverLicenceRepository.findActiveDtoByStudentName(studentName));
     }
 
     @Override

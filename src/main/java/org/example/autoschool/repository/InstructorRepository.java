@@ -19,8 +19,7 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
     Optional<Instructor> findByUserId(Long userId);
 
     @Query("SELECT i FROM Instructor i " +
-            "JOIN i.examDays ed " +
-            "JOIN ed.availableSlots s " +
+            "JOIN i.slots s " +
             "JOIN Exam e ON e.availableSlot = s " +
             "WHERE e.id = :examId")
     Instructor findInstructorByExamId(@Param("examId") Long examId);

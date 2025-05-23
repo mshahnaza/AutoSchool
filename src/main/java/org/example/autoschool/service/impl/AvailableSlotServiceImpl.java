@@ -25,7 +25,7 @@ public class AvailableSlotServiceImpl implements AvailableSlotService {
     @Override
     public AvailableSlot getEntityById(Long id) {
         return slotRepository.findById(id)
-                .orElseThrow(() -> new ObjectNotFoundException("Branch with id: " + id + "not found"));
+                .orElseThrow(() -> new ObjectNotFoundException("AvailableSlot with id: " + id + "not found"));
     }
 
     @Override
@@ -40,93 +40,93 @@ public class AvailableSlotServiceImpl implements AvailableSlotService {
 
     @Override
     public List<AvailableSlotDto> getDtoByExamDayId(Long id) {
-        return slotMapper.toDtoList(slotRepository.getDtoByExamDayId(id));
+        return slotMapper.toDtoList(slotRepository.findDtoByExamDayId(id));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByInstructorId(Long id) {
-        return slotMapper.toDtoList(slotRepository.getDtoByInstructorId(id));
+        return slotMapper.toDtoList(slotRepository.findDtoByInstructorId(id));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByIsBooked(Boolean isBooked) {
-        return slotMapper.toDtoList(slotRepository.getDtoByIsBooked(isBooked));
+        return slotMapper.toDtoList(slotRepository.findDtoByIsBooked(isBooked));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByTime(String time) {
-        return slotMapper.toDtoList(slotRepository.getDtoByTime(LocalTime.parse(time)));
+        return slotMapper.toDtoList(slotRepository.findDtoByTime(LocalTime.parse(time)));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByExamDayIdAndInstructorIdAndIsBookedAndTime(Long examDayId, Long instructorId, Boolean isBooked, String time) {
         return slotMapper.toDtoList(
-                slotRepository.getDtoByExamDayIdAndInstructorIdAndIsBookedAndTime(
+                slotRepository.findDtoByExamDayIdAndInstructorIdAndIsBookedAndTime(
                         examDayId, instructorId, isBooked, LocalTime.parse(time)));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByExamDayIdAndInstructorIdAndIsBooked(Long examDayId, Long instructorId, Boolean isBooked) {
         return slotMapper.toDtoList(
-                slotRepository.getDtoByExamDayIdAndInstructorIdAndIsBooked(
+                slotRepository.findDtoByExamDayIdAndInstructorIdAndIsBooked(
                         examDayId, instructorId, isBooked));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByExamDayIdAndInstructorIdAndTime(Long examDayId, Long instructorId, String time) {
         return slotMapper.toDtoList(
-                slotRepository.getDtoByExamDayIdAndInstructorIdAndTime(
+                slotRepository.findDtoByExamDayIdAndInstructorIdAndTime(
                         examDayId, instructorId, LocalTime.parse(time)));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByExamDayIdAndIsBookedAndTime(Long examDayId, Boolean isBooked, String time) {
         return slotMapper.toDtoList(
-                slotRepository.getDtoByExamDayIdAndIsBookedAndTime(
+                slotRepository.findDtoByExamDayIdAndIsBookedAndTime(
                         examDayId, isBooked, LocalTime.parse(time)));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByInstructorIdAndisBookedAndTime(Long instructorId, Boolean isBooked, String time) {
         return slotMapper.toDtoList(
-                slotRepository.getDtoByInstructorIdAndIsBookedAndTime(
+                slotRepository.findDtoByInstructorIdAndIsBookedAndTime(
                         instructorId, isBooked, LocalTime.parse(time)));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByExamDayIdAndInstructorId(Long examDayId, Long instructorId) {
         return slotMapper.toDtoList(
-                slotRepository.getDtoByExamDayIdAndInstructorId(examDayId, instructorId));
+                slotRepository.findDtoByExamDayIdAndInstructorId(examDayId, instructorId));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByExamDayIdAndIsBooked(Long examDayId, Boolean isBooked) {
         return slotMapper.toDtoList(
-                slotRepository.getDtoByExamDayIdAndIsBooked(examDayId, isBooked));
+                slotRepository.findDtoByExamDayIdAndIsBooked(examDayId, isBooked));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByExamDayIdAndTime(Long examDayId, String time) {
         return slotMapper.toDtoList(
-                slotRepository.getDtoByExamDayIdAndTime(examDayId, LocalTime.parse(time)));
+                slotRepository.findDtoByExamDayIdAndTime(examDayId, LocalTime.parse(time)));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByInstructorIdAndIsBooked(Long instructorId, Boolean isBooked) {
         return slotMapper.toDtoList(
-                slotRepository.getDtoByInstructorIdAndIsBooked(instructorId, isBooked));
+                slotRepository.findDtoByInstructorIdAndIsBooked(instructorId, isBooked));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByInstructorIdAndTime(Long instructorId, String time) {
         return slotMapper.toDtoList(
-                slotRepository.getDtoByInstructorIdAndTime(instructorId, LocalTime.parse(time)));
+                slotRepository.findDtoByInstructorIdAndTime(instructorId, LocalTime.parse(time)));
     }
 
     @Override
     public List<AvailableSlotDto> getDtoByIsBookedAndTime(Boolean isBooked, String time) {
         return slotMapper.toDtoList(
-                slotRepository.getDtoByIsBookedAndTime(isBooked, LocalTime.parse(time)));
+                slotRepository.findDtoByIsBookedAndTime(isBooked, LocalTime.parse(time)));
     }
 
     @Override

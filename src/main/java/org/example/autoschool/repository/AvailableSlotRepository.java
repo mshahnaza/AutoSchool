@@ -12,45 +12,45 @@ import java.util.List;
 public interface AvailableSlotRepository extends JpaRepository<AvailableSlot, Long> {
     Boolean existsByExamDayIdAndInstructorIdAndTime(Long examDayId, Long instructorId, LocalTime time);
 
-    List<AvailableSlot> getDtoByExamDayId(Long id);
+    List<AvailableSlot> findDtoByExamDayId(Long id);
 
-    List<AvailableSlot> getDtoByInstructorId(Long id);
+    List<AvailableSlot> findDtoByInstructorId(Long id);
 
-    List<AvailableSlot> getDtoByIsBooked(Boolean isBooked);
+    List<AvailableSlot> findDtoByIsBooked(Boolean isBooked);
 
-    List<AvailableSlot> getDtoByTime(LocalTime time);
+    List<AvailableSlot> findDtoByTime(LocalTime time);
 
-    List<AvailableSlot> getDtoByExamDayIdAndInstructorIdAndIsBookedAndTime(
+    List<AvailableSlot> findDtoByExamDayIdAndInstructorIdAndIsBookedAndTime(
             Long examDayId, Long instructorId, Boolean isBooked, LocalTime time);
 
-    List<AvailableSlot> getDtoByExamDayIdAndInstructorIdAndIsBooked(
+    List<AvailableSlot> findDtoByExamDayIdAndInstructorIdAndIsBooked(
             Long examDayId, Long instructorId, Boolean isBooked);
 
-    List<AvailableSlot> getDtoByExamDayIdAndInstructorIdAndTime(
+    List<AvailableSlot> findDtoByExamDayIdAndInstructorIdAndTime(
             Long examDayId, Long instructorId, LocalTime time);
 
-    List<AvailableSlot> getDtoByExamDayIdAndIsBookedAndTime(
+    List<AvailableSlot> findDtoByExamDayIdAndIsBookedAndTime(
             Long examDayId, Boolean isBooked, LocalTime time);
 
-    List<AvailableSlot> getDtoByInstructorIdAndIsBookedAndTime(
+    List<AvailableSlot> findDtoByInstructorIdAndIsBookedAndTime(
             Long instructorId, Boolean isBooked, LocalTime time);
 
-    List<AvailableSlot> getDtoByExamDayIdAndInstructorId(
+    List<AvailableSlot> findDtoByExamDayIdAndInstructorId(
             Long examDayId, Long instructorId);
 
-    List<AvailableSlot> getDtoByExamDayIdAndIsBooked(
+    List<AvailableSlot> findDtoByExamDayIdAndIsBooked(
             Long examDayId, Boolean isBooked);
 
-    List<AvailableSlot> getDtoByExamDayIdAndTime(
+    List<AvailableSlot> findDtoByExamDayIdAndTime(
             Long examDayId, LocalTime time);
 
-    List<AvailableSlot> getDtoByInstructorIdAndIsBooked(
+    List<AvailableSlot> findDtoByInstructorIdAndIsBooked(
             Long instructorId, Boolean isBooked);
 
-    List<AvailableSlot> getDtoByInstructorIdAndTime(
+    List<AvailableSlot> findDtoByInstructorIdAndTime(
             Long instructorId, LocalTime time);
 
-    List<AvailableSlot> getDtoByIsBookedAndTime(
+    List<AvailableSlot> findDtoByIsBookedAndTime(
             Boolean isBooked, LocalTime time);
 
 }

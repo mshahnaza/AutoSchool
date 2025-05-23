@@ -14,23 +14,23 @@ public interface DriverLicenceRepository extends JpaRepository<DriverLicence, Lo
             "JOIN dl.driver s " +
             "JOIN s.studentUser u " +
             "WHERE u.name = :studentName")
-    List<DriverLicence> getByStudentName(String studentName);
+    List<DriverLicence> findByStudentName(String studentName);
 
     @Query("SELECT dl FROM DriverLicence dl " +
             "WHERE dl.driver.id = :id")
-    List<DriverLicence> getDtoByStudentId(Long id);
+    List<DriverLicence> findDtoByStudentId(Long id);
 
     @Query("SELECT dl FROM DriverLicence dl " +
             "WHERE dl.issueDate = :date")
-    List<DriverLicence> getDtoByDate(LocalDate date);
+    List<DriverLicence> findDtoByDate(LocalDate date);
 
     @Query("SELECT dl FROM DriverLicence dl " +
             "WHERE dl.driver.id = :id AND dl.status = 'ACTIVE'")
-    List<DriverLicence> getActiveDtoByStudentId(Long id);
+    List<DriverLicence> findActiveDtoByStudentId(Long id);
 
     @Query("SELECT dl FROM DriverLicence dl " +
             "JOIN dl.driver s " +
             "JOIN s.studentUser u " +
             "WHERE u.name = :studentName AND dl.status = 'ACTIVE'")
-    List<DriverLicence> getActiveDtoByStudentName(String studentName);
+    List<DriverLicence> findActiveDtoByStudentName(String studentName);
 }
