@@ -6,6 +6,7 @@ import org.example.autoschool.enums.Category;
 import org.example.autoschool.enums.Status;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "driver_licence")
