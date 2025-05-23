@@ -15,4 +15,5 @@ public class AvailableSlotDto {
     private Integer maxStudentNumber;
     private Boolean isBooked;
     private ExamDayDto examDay;
+    private InstructorDto instructor;
 }

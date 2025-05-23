@@ -28,4 +28,8 @@ public class AvailableSlot {
     @ManyToOne
     @JoinColumn(name = "exam_day_id", referencedColumnName = "id")
     private ExamDay examDay;
+
+    @ManyToOne
+    @JoinColumn(name = "instructor_id", referencedColumnName = "id")
+    private Instructor instructor;
 }

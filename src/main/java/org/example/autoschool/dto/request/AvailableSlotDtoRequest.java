@@ -15,4 +15,5 @@ public class AvailableSlotDtoRequest {
     private Integer maxStudentNumber;
     private Boolean isBooked;
     private Long examDayId;
+    private Long instructorId;
 }
