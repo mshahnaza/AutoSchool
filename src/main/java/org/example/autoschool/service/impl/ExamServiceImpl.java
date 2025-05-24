@@ -114,7 +114,7 @@ public class ExamServiceImpl implements ExamService {
             createPracticalExam(exam);
 
         examRepository.save(exam);
-        if (examRepository.countBySlotId(exam.getAvailableSlot().getId()).equals(exam.getAvailableSlot().getMaxStudentNumber()))
+        if (examRepository.countBySlotId(exam.getAvailableSlot().getId()) < (exam.getAvailableSlot().getMaxStudentNumber()) || examRepository.countBySlotId(exam.getAvailableSlot().getId()).equals(exam.getAvailableSlot().getMaxStudentNumber()))
             slotService.bookSlot(exam.getAvailableSlot().getId());
 
         return examMapper.toDto(exam);
@@ -155,10 +155,16 @@ public class ExamServiceImpl implements ExamService {
 
     private void createPracticalExam(Exam exam) {
         List<ExamDto> dtos = getDtosByStudentIdAndExamTypeAndResult(exam.getStudent().getId(), "THEORETICAL", "PASSED");
-        if (dtos != null && !dtos.isEmpty())
-            if (dtos.get(0).getExpirationAt().isAfter(LocalDate.now()))
-                exam.setResult(ExamResult.EXPIRED);
 
-        throw new NoAccessException("You need to pass theoretical exam first");
+        if (dtos == null || dtos.isEmpty()) {
+            throw new NoAccessException("You need to pass theoretical exam first");
+        }
+
+        if (dtos.get(0).getExpirationAt().isBefore(LocalDate.now())) {
+            exam.setResult(ExamResult.EXPIRED);
+            throw new NoAccessException("Your theoretical exam has expired");
+        }
+
     }
+
 }
