@@ -26,6 +26,9 @@ public interface ExamService {
     List<ExamDto> getDtosByCategoryAndDate(String category, String date);
     List<ExamDto> getDtosByExamTypeAndDate(String examType, String date);
 
+    List<Exam> getDtosByBeforeExperationDate(Integer dayNumber);
+    List<Exam> getDtosByBeforeExamDate(Integer dayNumber);
+
     ExamDto save(ExamDtoRequest request);
     ExamDto update(ExamDtoRequest request);
 

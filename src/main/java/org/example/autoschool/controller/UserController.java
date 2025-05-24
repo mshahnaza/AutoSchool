@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "api/v1/user")
 @RequiredArgsConstructor
-@Tag(name = "User Management", description = "Operations related to managing user entities in the autoschool system")
+@Tag(name = "User Management", description = "Operations related to managing user entities in the autoSchool system")
 public class UserController {
     private final UserService userService;
 

@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/branch")
 @RequiredArgsConstructor
-@Tag(name = "Branch Management", description = "Operations related to managing branch entities in the autoschool system")
+@Tag(name = "Branch Management", description = "Operations related to managing branch entities in the autoSchool system")
 public class BranchController {
 
     private final BranchService branchService;

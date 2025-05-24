@@ -9,17 +9,11 @@ import org.example.autoschool.dto.request.InstructorDtoRequest;
 import org.example.autoschool.dto.request.LoginRequest;
 import org.example.autoschool.dto.request.StudentDtoRequest;
 import org.example.autoschool.dto.response.AuthResponse;
-import org.example.autoschool.dto.response.InstructorDto;
-import org.example.autoschool.dto.response.StudentDto;
 import org.example.autoschool.entity.Student;
 import org.example.autoschool.entity.User;
 import org.example.autoschool.enums.Role;
 import org.example.autoschool.enums.TokenType;
-import org.example.autoschool.service.TokenService;
-import org.example.autoschool.service.UserService;
 import org.example.autoschool.utils.exception.NoTokenProvided;
-import org.example.autoschool.utils.exception.VerificationException;
-import org.example.autoschool.utils.mapper.StudentMapper;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,10 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor

@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.example.autoschool.dto.request.InstructorDtoRequest;
 import org.example.autoschool.dto.response.InstructorDto;
 import org.example.autoschool.entity.Instructor;
-import org.example.autoschool.entity.Student;
 import org.example.autoschool.repository.InstructorRepository;
 import org.example.autoschool.service.InstructorService;
 import org.example.autoschool.service.UserService;

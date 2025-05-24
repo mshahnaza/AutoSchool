@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/driver-licence")
 @RequiredArgsConstructor
-@Tag(name = "Driver Licence Management", description = "Operations related to managing driver licence entities in the autoschool system")
+@Tag(name = "Driver Licence Management", description = "Operations related to managing driver licence entities in the autoSchool system")
 public class DriverLicenceController {
 
     private final DriverLicenceService driverLicenceService;

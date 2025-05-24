@@ -3,10 +3,7 @@ package org.example.autoschool.service;
 import org.example.autoschool.dto.request.ExamDayDtoRequest;
 import org.example.autoschool.dto.response.ExamDayDto;
 import org.example.autoschool.entity.ExamDay;
-import org.example.autoschool.enums.Category;
-import org.example.autoschool.enums.ExamType;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface ExamDayService {

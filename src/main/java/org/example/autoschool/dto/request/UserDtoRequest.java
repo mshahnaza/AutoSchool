@@ -1,7 +1,6 @@
 package org.example.autoschool.dto.request;
 
 import lombok.*;
-import org.example.autoschool.enums.Role;
 
 import java.time.LocalDate;
 

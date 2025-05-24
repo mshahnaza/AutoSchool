@@ -1,14 +1,10 @@
 package org.example.autoschool.utils.mapper;
 
 import lombok.RequiredArgsConstructor;
-import org.example.autoschool.dto.request.AvailableSlotDtoRequest;
 import org.example.autoschool.dto.request.DriverLicenceDtoRequest;
-import org.example.autoschool.dto.response.AvailableSlotDto;
 import org.example.autoschool.dto.response.DriverLicenceDto;
-import org.example.autoschool.entity.AvailableSlot;
 import org.example.autoschool.entity.DriverLicence;
 import org.example.autoschool.enums.Category;
-import org.example.autoschool.service.ExamDayService;
 import org.example.autoschool.service.StudentService;
 import org.springframework.stereotype.Component;
 

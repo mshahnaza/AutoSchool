@@ -65,4 +65,10 @@ public interface ExamRepository extends JpaRepository<Exam, Long> {
     List<Exam> findByExamTypeAndDate(
             @Param("examType") ExamType examType,
             @Param("date") LocalDate date);
+
+    @Query("SELECT e FROM Exam e WHERE e.expirationAt <= :targetDate")
+    List<Exam> findExamsBeforeExpiration(@Param("targetDate") LocalDate targetDate);
+
+    @Query("SELECT e FROM Exam e WHERE e.takenAt <= :targetDate")
+    List<Exam> findExamsBeforeExamDay(@Param("targetDate") LocalDate targetDate);
 }

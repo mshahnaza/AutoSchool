@@ -2,11 +2,8 @@ package org.example.autoschool.utils.mapper;
 
 import lombok.RequiredArgsConstructor;
 import org.example.autoschool.dto.request.InstructorDtoRequest;
-import org.example.autoschool.dto.request.StudentDtoRequest;
 import org.example.autoschool.dto.response.InstructorDto;
-import org.example.autoschool.dto.response.StudentDto;
 import org.example.autoschool.entity.Instructor;
-import org.example.autoschool.entity.Student;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

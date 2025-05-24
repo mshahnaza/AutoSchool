@@ -1,14 +1,12 @@
 package org.example.autoschool.utils.mapper;
 
 import lombok.RequiredArgsConstructor;
-import org.example.autoschool.dto.request.BranchDtoRequest;
 import org.example.autoschool.dto.request.ExamDayDtoRequest;
 import org.example.autoschool.dto.response.ExamDayDto;
 import org.example.autoschool.entity.ExamDay;
 import org.example.autoschool.enums.Category;
 import org.example.autoschool.enums.ExamType;
 import org.example.autoschool.service.BranchService;
-import org.example.autoschool.service.InstructorService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

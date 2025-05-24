@@ -1,19 +1,14 @@
 package org.example.autoschool.utils.mapper;
 
 import lombok.RequiredArgsConstructor;
-import org.example.autoschool.dto.request.AvailableSlotDtoRequest;
 import org.example.autoschool.dto.request.ExamDtoRequest;
-import org.example.autoschool.dto.response.AvailableSlotDto;
 import org.example.autoschool.dto.response.ExamDto;
-import org.example.autoschool.entity.AvailableSlot;
 import org.example.autoschool.entity.Exam;
 import org.example.autoschool.enums.ExamResult;
 import org.example.autoschool.service.AvailableSlotService;
-import org.example.autoschool.service.ExamDayService;
 import org.example.autoschool.service.StudentService;
 import org.springframework.stereotype.Component;
 
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.stream.Collectors;
 

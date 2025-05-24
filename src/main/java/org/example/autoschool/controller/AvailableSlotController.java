@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/slot")
 @RequiredArgsConstructor
-@Tag(name = "Available Slot Management", description = "Operations related to managing available slot entities in the autoschool system")
+@Tag(name = "Available Slot Management", description = "Operations related to managing available slot entities in the autoSchool system")
 public class AvailableSlotController {
 
     private final AvailableSlotService slotService;

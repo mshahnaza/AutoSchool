@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/exam")
 @RequiredArgsConstructor
-@Tag(name = "Exam Management", description = "Operations related to managing exam entities in the autoschool system")
+@Tag(name = "Exam Management", description = "Operations related to managing exam entities in the autoSchool system")
 public class ExamController {
 
     private final ExamService examService;

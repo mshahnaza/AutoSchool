@@ -9,6 +9,7 @@ import org.example.autoschool.enums.ExamResult;
 import org.example.autoschool.enums.ExamType;
 import org.example.autoschool.repository.ExamRepository;
 import org.example.autoschool.service.AvailableSlotService;
+import org.example.autoschool.service.EmailService;
 import org.example.autoschool.service.ExamService;
 import org.example.autoschool.utils.exception.NoAccessException;
 import org.example.autoschool.utils.exception.ObjectNotFoundException;
@@ -17,6 +18,7 @@ import org.example.autoschool.utils.mapper.ExamMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,6 +27,7 @@ public class ExamServiceImpl implements ExamService {
     private final ExamRepository examRepository;
     private final ExamMapper examMapper;
     private final AvailableSlotService slotService;
+    private final EmailService emailService;
 
     @Override
     public Exam getEntityById(Long id) {
@@ -105,6 +108,32 @@ public class ExamServiceImpl implements ExamService {
     }
 
     @Override
+    public List<Exam> getDtosByBeforeExperationDate(Integer dayNumber) {
+        LocalDate targetDate = LocalDate.now().plusDays(dayNumber);
+        List<Exam> examList = examRepository.findExamsBeforeExpiration(targetDate);
+        List<Exam> result = new ArrayList<>();
+        for (Exam exam : examList)
+            if (exam.getAvailableSlot().getExamDay().getExamType() == ExamType.THEORETICAL)
+                if (exam.getResult() == ExamResult.PASSED)
+                    result.add(exam);
+
+        return result;
+    }
+
+    @Override
+    public List<Exam> getDtosByBeforeExamDate(Integer dayNumber) {
+        LocalDate targetDate = LocalDate.now().plusDays(dayNumber);
+        List<Exam> examList = examRepository.findExamsBeforeExamDay(targetDate);
+        List<Exam> result = new ArrayList<>();
+
+        for (Exam exam : examList)
+            if (exam.getResult() == ExamResult.PENDING)
+                result.add(exam);
+
+        return result;
+    }
+
+    @Override
     public ExamDto save(ExamDtoRequest request) {
         Exam exam = examMapper.toEntity(request);
         if (exam.getAvailableSlot().getIsBooked())
@@ -150,7 +179,15 @@ public class ExamServiceImpl implements ExamService {
         Exam exam = getEntityById(examId);
         exam.setResult(ExamResult.valueOf(result));
         exam.setRemarks(remarks);
-        return examMapper.toDto(examRepository.save(exam));
+        examRepository.save(exam);
+
+        List<ExamDto> exams = getDtosByStudentIdAndExamTypeAndResult(exam.getStudent().getId(), "THEORETICAL", "PASSED");
+        for (ExamDto examDto : exams)
+            examDto.setResult(ExamResult.EXPIRED);
+
+        emailService.sendExamResult(exam.getStudent(), exam);
+
+        return examMapper.toDto(exam);
     }
 
     private void createPracticalExam(Exam exam) {

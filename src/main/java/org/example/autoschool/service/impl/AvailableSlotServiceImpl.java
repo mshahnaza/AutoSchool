@@ -164,7 +164,7 @@ public class AvailableSlotServiceImpl implements AvailableSlotService {
 
     @Override
     public void bookSlot(Long slotId) {
-        AvailableSlot slot = slotRepository.getById(slotId);
+        AvailableSlot slot = getEntityById(slotId);
         slot.setIsBooked(true);
         slotRepository.save(slot);
     }

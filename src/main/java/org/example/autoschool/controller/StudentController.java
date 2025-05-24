@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/student")
 @RequiredArgsConstructor
-@Tag(name = "Student Management", description = "Operations related to managing student entities in the autoschool system")
+@Tag(name = "Student Management", description = "Operations related to managing student entities in the autoSchool system")
 public class StudentController {
 
     private final StudentService studentService;
