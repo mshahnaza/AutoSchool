@@ -3,6 +3,7 @@ package org.example.autoschool.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.autoschool.enums.ExamResult;
+import org.example.autoschool.enums.ExamType;
 
 import java.time.LocalDate;
 
@@ -34,4 +35,16 @@ public class Exam {
     @OneToOne
     @JoinColumn(name = "slot_id", referencedColumnName = "id")
     private AvailableSlot availableSlot;
+
+    @PrePersist
+    private void prePersist() {
+        if (result == null)
+            result = ExamResult.PENDING;
+        if (takenAt == null)
+            takenAt = availableSlot.getExamDay().getDate();
+
+        if (availableSlot.getExamDay().getExamType().equals(ExamType.THEORETICAL))
+            if (expirationAt == null)
+                expirationAt = takenAt.plusMonths(3);
+    }
 }
