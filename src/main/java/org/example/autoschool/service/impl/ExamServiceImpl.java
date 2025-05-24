@@ -1,6 +1,5 @@
 package org.example.autoschool.service.impl;
 
-import lombok.RequiredArgsConstructor;
 import org.example.autoschool.dto.request.ExamDtoRequest;
 import org.example.autoschool.dto.response.ExamDto;
 import org.example.autoschool.entity.Exam;
@@ -15,6 +14,7 @@ import org.example.autoschool.utils.exception.NoAccessException;
 import org.example.autoschool.utils.exception.ObjectNotFoundException;
 import org.example.autoschool.utils.exception.OverloadExeption;
 import org.example.autoschool.utils.mapper.ExamMapper;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -22,12 +22,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ExamServiceImpl implements ExamService {
     private final ExamRepository examRepository;
     private final ExamMapper examMapper;
     private final AvailableSlotService slotService;
     private final EmailService emailService;
+
+    public ExamServiceImpl(ExamRepository examRepository, ExamMapper examMapper, AvailableSlotService slotService, @Lazy EmailService emailService) {
+        this.examRepository = examRepository;
+        this.examMapper = examMapper;
+        this.slotService = slotService;
+        this.emailService = emailService;
+    }
 
     @Override
     public Exam getEntityById(Long id) {
