@@ -11,6 +11,7 @@ import org.example.autoschool.dto.response.AvailableSlotDto;
 import org.example.autoschool.service.AvailableSlotService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -316,6 +317,7 @@ public class AvailableSlotController {
             @ApiResponse(responseCode = "201", description = "Slot successfully created"),
             @ApiResponse(responseCode = "409", description = "Slot already exists with given exam day, instructor, and time")
     })
+    @PreAuthorize("hasAnyRole('ADMIN', 'INSTRUCTOR')")
     @PostMapping("/create")
     public ResponseEntity<AvailableSlotDto> createSlot(@RequestBody AvailableSlotDtoRequest request) {
         AvailableSlotDto savedSlot = slotService.save(request);
@@ -332,6 +334,7 @@ public class AvailableSlotController {
             @ApiResponse(responseCode = "404", description = "Slot not found"),
             @ApiResponse(responseCode = "409", description = "Slot overload or max students reached")
     })
+    @PreAuthorize("hasAnyRole('ADMIN', 'INSTRUCTOR')")
     @PutMapping("/update")
     public ResponseEntity<AvailableSlotDto> updateSlot(@RequestBody AvailableSlotDtoRequest request) {
         AvailableSlotDto updatedSlot = slotService.update(request);

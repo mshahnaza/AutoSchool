@@ -10,6 +10,7 @@ import org.example.autoschool.dto.response.ExamDayDto;
 import org.example.autoschool.service.ExamDayService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -153,6 +154,7 @@ public class ExamDayController {
             @ApiResponse(responseCode = "201", description = "Exam day successfully created"),
             @ApiResponse(responseCode = "400", description = "Invalid request data or exam day already exists")
     })
+    @PreAuthorize("hasAnyRole('ADMIN', 'INSTRUCTOR')")
     @PostMapping("/create")
     public ResponseEntity<ExamDayDto> create(@RequestBody ExamDayDtoRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(examDayService.save(request));
@@ -168,6 +170,7 @@ public class ExamDayController {
             @ApiResponse(responseCode = "400", description = "Invalid request data or exam day already exists"),
             @ApiResponse(responseCode = "404", description = "Exam day not found")
     })
+    @PreAuthorize("hasAnyRole('ADMIN', 'INSTRUCTOR')")
     @PutMapping("/update")
     public ResponseEntity<ExamDayDto> update(@RequestBody ExamDayDtoRequest request) {
         return ResponseEntity.ok(examDayService.update(request));

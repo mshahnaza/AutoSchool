@@ -9,6 +9,7 @@ import org.example.autoschool.dto.request.DriverLicenceDtoRequest;
 import org.example.autoschool.dto.response.DriverLicenceDto;
 import org.example.autoschool.service.DriverLicenceService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -113,6 +114,7 @@ public class DriverLicenceController {
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Driver licence successfully created")
     })
+    @PreAuthorize("hasAnyRole('ADMIN', 'INSTRUCTOR')")
     @PostMapping("/create")
     public ResponseEntity<DriverLicenceDto> save(@RequestBody DriverLicenceDtoRequest request) {
         DriverLicenceDto saved = driverLicenceService.save(request);
@@ -126,6 +128,7 @@ public class DriverLicenceController {
             @ApiResponse(responseCode = "200", description = "Driver licence successfully updated"),
             @ApiResponse(responseCode = "404", description = "Driver licence to update not found")
     })
+    @PreAuthorize("hasAnyRole('ADMIN', 'INSTRUCTOR')")
     @PutMapping("/update")
     public ResponseEntity<DriverLicenceDto> update(@RequestBody DriverLicenceDtoRequest request) {
         DriverLicenceDto updated = driverLicenceService.update(request);

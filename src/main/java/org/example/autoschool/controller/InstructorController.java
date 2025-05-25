@@ -10,6 +10,7 @@ import org.example.autoschool.dto.request.InstructorDtoRequest;
 import org.example.autoschool.dto.response.InstructorDto;
 import org.example.autoschool.service.InstructorService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -113,6 +114,7 @@ public class InstructorController {
             @ApiResponse(responseCode = "404", description = "Instructor not found"),
             @ApiResponse(responseCode = "400", description = "Invalid input")
     })
+    @PreAuthorize("hasAnyRole('ADMIN', 'INSTRUCTOR')")
     @PutMapping("/update")
     public ResponseEntity<InstructorDto> update(
             @Parameter(description = "Instructor data for update") @RequestBody InstructorDtoRequest request) {

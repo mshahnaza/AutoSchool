@@ -10,6 +10,7 @@ import org.example.autoschool.dto.response.BranchDto;
 import org.example.autoschool.service.BranchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -58,6 +59,7 @@ public class BranchController {
             @ApiResponse(responseCode = "201", description = "Branch successfully created"),
             @ApiResponse(responseCode = "400", description = "Invalid request data")
     })
+    @PreAuthorize("hasAnyRole('ADMIN', 'INSTRUCTOR')")
     @PostMapping("/create")
     public ResponseEntity<BranchDto> createBranch(@RequestBody BranchDtoRequest branchDtoRequest) {
         BranchDto createdBranch = branchService.save(branchDtoRequest);
@@ -74,6 +76,7 @@ public class BranchController {
             @ApiResponse(responseCode = "404", description = "Branch not found"),
             @ApiResponse(responseCode = "400", description = "Invalid request data")
     })
+    @PreAuthorize("hasAnyRole('ADMIN', 'INSTRUCTOR')")
     @PutMapping("/update")
     public ResponseEntity<BranchDto> updateBranch(@RequestBody BranchDtoRequest branchDtoRequest) {
         BranchDto updatedBranch = branchService.update(branchDtoRequest);

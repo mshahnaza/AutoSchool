@@ -9,6 +9,7 @@ import org.example.autoschool.dto.request.ExamDtoRequest;
 import org.example.autoschool.dto.response.ExamDto;
 import org.example.autoschool.service.ExamService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -281,6 +282,7 @@ public class ExamController {
             @ApiResponse(responseCode = "404", description = "Exam not found"),
             @ApiResponse(responseCode = "400", description = "Invalid grade or remarks")
     })
+    @PreAuthorize("hasAnyRole('ADMIN', 'INSTRUCTOR')")
     @PatchMapping("/grade/{examId}")
     public ResponseEntity<ExamDto> giveGrade(
             @PathVariable Long examId,
