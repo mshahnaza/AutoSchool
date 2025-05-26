@@ -35,8 +35,15 @@ public class AuthController {
     @PostMapping("/register-student")
     public ResponseEntity<?> register(@RequestBody StudentDtoRequest request) {
         try {
-            authService.registerStudent(request);
-            return ResponseEntity.ok("Successfully registered");
+            Map<String, String> authResponse = authService.registerStudent(request);
+            Map<String, Object> response;
+
+            response = Map.of(
+                    "message", "This is you tokens",
+                    "tokens", authResponse
+            );
+
+            return ResponseEntity.ok(response);
         } catch (Exception exception) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registration failed: " + exception.getMessage());
         }
@@ -53,8 +60,15 @@ public class AuthController {
     @PostMapping("/register-instructor")
     public ResponseEntity<?> register(@RequestBody InstructorDtoRequest request) {
         try {
-            authService.registerInstructor(request);
-            return ResponseEntity.ok("Successfully registered");
+            Map<String, String> authResponse = authService.registerInstructor(request);
+            Map<String, Object> response;
+
+            response = Map.of(
+                    "message", "This is you tokens",
+                    "tokens", authResponse
+            );
+
+            return ResponseEntity.ok(response);
         } catch (Exception exception) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registration failed: " + exception.getMessage());
         }
@@ -74,17 +88,10 @@ public class AuthController {
             Map<String, String> authResponse = authService.login(request);
             Map<String, Object> response;
 
-            if (authResponse.isEmpty()) {
-                response = Map.of(
-                        "message", "Please verify your 2 factor authentication email",
-                        "tokens", authResponse
-                );
-            } else {
-                response = Map.of(
-                        "message", "This is you tokens",
-                        "tokens", authResponse
-                );
-            }
+            response = Map.of(
+                    "message", "This is you tokens",
+                    "tokens", authResponse
+            );
 
             return ResponseEntity.ok(response);
         } catch (Exception e) {
